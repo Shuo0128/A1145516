@@ -13,20 +13,24 @@ int main(){
                 cout << now << " is not prime." << endl;
                 break;
             }
-            if(i + 1 > sqrt(n)){
-                reverse(num.begin(), num.end());
-                int m = stoi(num);
-                if(m == n){
-                    cout << now << " is prime." << endl;
-                    break;
-                }
-                for(int j = 2; j <= sqrt(m); j++){
-                    if(m % j == 0){
+            else{
+                if(i + 1 > sqrt(n)){
+                    reverse(num.begin(), num.end());
+                    int m = stoi(num);
+                    if(m == n){
                         cout << now << " is prime." << endl;
                         break;
                     }
-                    if(j + 1 > sqrt(m)){
-                        cout << now << " is emirp." << endl;
+                    for(int j = 2; j <= sqrt(m); j++){
+                        if(m % j == 0){
+                            cout << now << " is prime." << endl;
+                            break;
+                        }
+                        else{
+                            if(j + 1 > sqrt(m)){
+                                cout << now << " is emirp." << endl;
+                            }
+                        }
                     }
                 }
             }

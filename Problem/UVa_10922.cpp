@@ -8,7 +8,7 @@ int main() {
             break;
         }
         int sum = 0;
-        for (int i = 0; num[i]; i++) {
+        for (int i = 0; num[i] != '\0'; i++) {
             sum = sum + (num[i] - '0');
         }
         if (sum % 9 != 0) {
