@@ -1,5 +1,6 @@
-#include <iostream>
-#include <string>
+#include<iostream>
+#include<string>
+#include<algorithm>
 using namespace std;
 int main() {
     int t, max = 0;

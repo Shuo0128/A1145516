@@ -4,7 +4,7 @@ using namespace std;
 int main(){
     string nu;
     while(getline(cin,nu)){
-        int mx = 0, smN = 0, sum = 0;
+        int mx = 0, sum = 0;
         for(int i = 0; nu[i] != '\0'; i++){
             int c = 0;
             if(nu[i] >= '0' && nu[i] <= '9'){
@@ -19,8 +19,11 @@ int main(){
             sum = sum + c;
             if(c > mx){
                 mx = c;
-                smN = mx + 1;;
             }
+        }
+        int smN = mx + 1;
+        if(smN < 2){
+            smN = 2;
         }
         for(int j = smN; j <= 62; j++){
             if(sum % (j - 1) == 0){

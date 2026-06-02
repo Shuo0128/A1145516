@@ -27,6 +27,6 @@ int main() {
 				max = len;
 			}
 		}
-		cout << max << "\n";
+		cout << max << endl;
 	}
 }

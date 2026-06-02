@@ -1,4 +1,5 @@
-#include <iostream>
+#include<iostream>
+#include<iomanip> // setw
 using namespace std;
 void bangla(long long int x) { //ex:45897458973958
     if (x >= 10000000) {
@@ -26,13 +27,14 @@ int main() {
     long long int n = 0;
     int t = 1;
     while (cin >> n) {
-        cout << "   " << t++ << ".";
+        // setw(4): 1寫成   1(0001四位)
+        cout << setw(4) << t++ << ".";
         if (n == 0) {
             cout << " 0\n";
         }
         else {
             bangla(n);
-            cout << "\n";
+            cout << endl;;
         }
     }
 }

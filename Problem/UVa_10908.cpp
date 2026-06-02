@@ -1,43 +1,50 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 int main() {
 	int t = 0;
 	cin >> t;
-	while (t--) {
-		int m, n, q = 0;
-		cin >> m >> n >> q;
-		string gr[101];
-		for (int a = 0; a < m; a++) {
-			cin >> gr[a];
+	while(t--) {
+		int M, N, tc;
+		cin >> M >> N >> tc;
+		vector<string> sq(M);
+		for(int i = 0; i < M; i++){
+			cin >> sq[i];
 		}
-		cout << m << " " << n << " " << q << endl;
-		while (q--) {
-			int x, y = 0;
-			int ls = 1;
+		cout << M << " " << N << " " << tc << endl;
+		while(tc--){
+			int y, x;
 			int bol = 1;
-			cin >> x >> y;
-			char c = gr[x][y];
-			for (int b = 1;; b++) {
-				int top = x - b;
-				int bot = x + b;
-				int left = y - b;
-				int right = y + b;
-				if (top < 0 || left < 0 || bot > m - 1 || right > n - 1) {
+			int d = 1;
+			cin >> y >> x;
+			char c = sq[y][x];
+			for(int m = 1;; m++){
+				int top = y - m;
+				int bot = y + m;
+				int right = x + m;
+				int left = x - m;
+				if(top < 0 || left < 0 || bot >= M || right >= N){
 					break;
 				}
-				for (int i = top; i <= bot; i++) {
-					for (int j = left; j <= right; j++) {
-						if (gr[i][j] != c) {
+				for(int j = top; j <= bot; j++){
+					for(int k = left; k <= right; k++){
+						if(sq[j][k] != c){
 							bol = 0;
 							break;
 						}
 					}
+					if(bol == 0){
+						break;
+					}
 				}
-				if (bol == 1) {
-					ls = ls + 2;
+				if(bol == 1){
+					d = d + 2;
+				}
+				else{
+					break;
 				}
 			}
-			cout << ls << endl;
+			cout << d << endl;
 		}
 	}
 }

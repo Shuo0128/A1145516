@@ -5,37 +5,40 @@ int main() {
 	int t, n, s;
 	int	casen = 1;
 	while (cin >> t) {
-		int booll = 1;
-		int increasing = 1;
-		for (int i = 0; i < t; i++) {
+		bool tell = true;
+		for(int i = 0; i < t; i++){
 			cin >> n;
-			if (n <= 0) {
-				booll = 0;
+			if(n < 1){
+				tell = false;
 			}
-			if (i > 0 && n <= num[i - 1]) {
-				increasing = 0;
+			if(i > 0 && n <= num[i - 1]){
+				tell = false;
 			}
 			num[i] = n;
 		}
-		int sum[20000] = {};
-		for (int j = 0; j < t; j++) {
-			int cur = num[j];
-			for (int k = j; k < t; k++) {
-				s = cur + num[k];
-				if (sum[s] == 0) {
-					sum[s] = 1;
+		int tel = 1;
+		if(tell){
+			int sum[20001] = {};
+			for(int j = 0; j < t; j++){
+				for(int k = j; k < t; k++){
+					if(sum[num[j] + num[k]] == 1){
+						tel = 0;
+						break;
+					}
+					else{
+						sum[num[j] + num[k]] = 1;
+					}
 				}
-				else {
-					booll = 0;
+				if(tel == 0){
 					break;
-				}
+				}	
 			}
 		}
-		if (booll == 1 && increasing == 1) {
-			cout << "Case #" << casen++ << ": It is a B2-Sequence." << endl;
+		if(tell && tel == 1){
+			cout << "Case #" << casen++ << ": It is a B2-Sequence." << endl << endl;
 		}
-		else {
-			cout << "Case #" << casen++ << ": It is not a B2-Sequence." << endl;
+		if(!tell || tel == 0){
+			cout << "Case #" << casen++ << ": It is not a B2-Sequence." << endl << endl;
 		}
 	}
 }

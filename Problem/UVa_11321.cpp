@@ -1,47 +1,38 @@
 #include<iostream>
+#include<algorithm>
 using namespace std;
-int main() {
-	int n, m;
-	int num[10000] = {};
-	while (cin >> n >> m ) {
-		if (n == 0 && m == 0) {
-			cout << n << " " << m << endl;
-			break;
-		}
-		for (int i = 0; i < n; i++) {
-			cin >> num[i];
-		}
-		for (int j = 0; j < n - 1; j++) {
-			for (int k = j + 1; k < n; k++) {
-				int a = num[j], b = num[k];
-				int ra = a % m, rb = b % m;
-				int sw = 0;
-				if (ra > rb) {
-					sw = 1;
-				}
-				if (ra == rb) {
-					int yona = a % 2;
-					int yonb = b % 2;
-					if (yona == 0 && yonb == 1) {
-						sw = 1;
-					}
-					if (yona == 1 && yonb == 1 && a < b) {
-						sw = 1;
-					}
-					if (yona == 0 && yonb == 0 && a > b) {
-						sw = 1;
-					}
-				}
-				if (sw == 1) {
-					int temp = num[j];
-					num[j] = num[k];
-					num[k] = temp;
-				}
-			}
-		}
-		cout << n << " " << m << endl;
-		for (int l = 0; l < n; l++) {
-			cout << num[l] << endl;
-		}
+int n, m;
+int num[10000];
+bool cmp(int a, int b) {
+    int ra = a % m, rb = b % m;
+    if (ra != rb) {
+		return ra < rb; 
+    }
+    int yona = abs(a % 2), yonb = abs(b % 2);
+    if (yona != yonb) {
+		return yona > yonb;
 	}
+    if (yona == 1 && yonb == 1) {
+		return a > b;
+    }
+    if (yona == 0 && yonb == 0) {
+		return a < b;
+	}
+}
+int main() {
+    while (cin >> n >> m) {
+        if (n == 0 && m == 0) {
+            cout << n << " " << m << endl;
+            break;
+        }
+        for (int i = 0; i < n; i++) {
+            cin >> num[i];
+        }
+		// 用sort中的cmp自訂函式排列
+        sort(num, num + n, cmp);
+        cout << n << " " << m << endl;
+        for (int i = 0; i < n; i++) {
+            cout << num[i] << endl;
+        }
+    }
 }
