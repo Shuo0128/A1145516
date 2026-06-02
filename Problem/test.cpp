@@ -1,6 +1,7 @@
-#include<stdio.h>
+#include<iostream>
+using namespace std;
 int main(){
-    int a=0;
-    scanf("%d",&a);
-    printf("%d Hello world!",a);
+    int a;
+    cin >> a;
+    cout << "Hello world!";
 }
